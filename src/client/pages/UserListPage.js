@@ -26,7 +26,14 @@ class UserList extends React.Component {
   }
 }
 
-export default connect(
-  state => ({ users: state.users }),
-  { fetchUsers },
-)(UserList);
+function loadData(store) {
+  return store.dispatch(fetchUsers());
+}
+
+export default {
+  loadData,
+  component: connect(
+    state => ({ users: state.users }),
+    { fetchUsers },
+  )(UserList),
+};
