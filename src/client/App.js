@@ -8,8 +8,11 @@ const App = ({ route }) => {
   return (
     <div>
       <Header />
-      <h1>SSR Application</h1>
-      {renderRoutes(route.routes)}
+      <div className="ui container">
+        <div className="ui hidden divider" style={{ marginTop: '50px' }} />
+        <h1>SSR Application</h1>
+        {renderRoutes(route.routes)}
+      </div>
     </div>
   );
 };

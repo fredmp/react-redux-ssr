@@ -4,18 +4,28 @@ import { connect } from 'react-redux';
 
 // eslint-disable-next-line react/prop-types
 const Header = ({ auth }) => {
-  console.log(auth);
-
-  const authButton = auth ? <a href="/api/logout">Logout</a> : <a href="/api/auth/google">Login</a>;
+  const authButton = auth ? (
+    <a className="ui item" href="/api/logout">
+      Logout
+    </a>
+  ) : (
+    <a className="ui item" href="/api/auth/google">
+      Login
+    </a>
+  );
 
   return (
-    <div>
-      <Link to="/">React SSR</Link>
-      <div>
-        <Link to="/users">Users</Link>
-        <Link to="/admins">Admins</Link>
-        {authButton}
-      </div>
+    <div className="ui inverted large fixed menu">
+      <Link className="item" to="/">
+        React SSR
+      </Link>
+      <Link className="item" to="/users">
+        Users
+      </Link>
+      <Link className="item" to="/admins">
+        Admins
+      </Link>
+      <div className="right menu">{authButton}</div>
     </div>
   );
 };
