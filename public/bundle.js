@@ -8579,7 +8579,7 @@ var _reducers2 = _interopRequireDefault(_reducers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var store = (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+var store = (0, _redux.createStore)(_reducers2.default, window.INITIAL_STATE, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 
 _reactDom2.default.hydrate(_react2.default.createElement(
   _reactRedux.Provider,
@@ -39730,9 +39730,11 @@ var UserList = function (_React$Component) {
   _createClass(UserList, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var fetch = this.props.fetchUsers;
+      var _props = this.props,
+          users = _props.users,
+          fetch = _props.fetchUsers;
 
-      fetch();
+      if (!users) fetch();
     }
   }, {
     key: 'renderList',
