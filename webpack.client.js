@@ -1,18 +1,14 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
-const excludeNodeExternals = require('webpack-node-externals');
 
 const config = {
-  target: 'node',
-
-  entry: './src/index.js',
+  entry: './src/client/index.js',
 
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build')
-  },
-  externals: [excludeNodeExternals()]
+    path: path.resolve(__dirname, 'public')
+  }
 };
 
 module.exports = merge(baseConfig, config);
