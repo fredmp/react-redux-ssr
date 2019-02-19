@@ -1,7 +1,7 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const baseConfig = require('./webpack.base');
 const excludeNodeExternals = require('webpack-node-externals');
+const baseConfig = require('./webpack.base');
 
 const config = {
   target: 'node',
@@ -10,9 +10,9 @@ const config = {
 
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, 'build'),
   },
-  externals: [excludeNodeExternals()]
+  externals: [excludeNodeExternals()],
 };
 
 module.exports = merge(baseConfig, config);
