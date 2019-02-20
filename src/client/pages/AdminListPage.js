@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
+import requireAuth from '../components/hocs/requireAuth';
 import { fetchAdmins } from '../actions';
 
 class AdminList extends React.Component {
@@ -35,5 +36,5 @@ export default {
   component: connect(
     state => ({ admins: state.admins }),
     { fetchAdmins },
-  )(AdminList),
+  )(requireAuth(AdminList)),
 };
