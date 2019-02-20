@@ -1,6 +1,9 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-const NotFoundPage = () => {
+const NotFoundPage = ({ staticContext = {} }) => {
+  staticContext.notFound = true;
   return <h1>Page not found!</h1>;
 };
 
