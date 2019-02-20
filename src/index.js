@@ -24,9 +24,18 @@ app.use(express.static('public'));
 app.get('*', (req, res) => {
   const store = createStore(req);
 
-  const promises = matchRoutes(routes, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData(store) : null;
-  });
+  const promises = matchRoutes(routes, req.path)
+    .map(({ route }) => {
+      return route.loadData ? route.loadData(store) : null;
+    })
+    .map(promise => {
+      if (promise) {
+        return new Promise(resolve => {
+          promise.then(resolve).catch(resolve);
+        });
+      }
+      return null;
+    });
 
   Promise.all(promises).then(() => {
     const context = {};
@@ -39,5 +48,6 @@ app.get('*', (req, res) => {
 });
 
 app.listen(3000, () => {
+  // eslint-disable-next-line no-console
   console.log('Running application server...');
 });
